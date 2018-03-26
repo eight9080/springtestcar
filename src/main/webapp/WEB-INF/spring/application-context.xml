@@ -27,5 +27,5 @@
 			<property name="entityManagerFactory" ref="entityManagerFactory"/>
 		</bean>-->
 
-		<jpa:repositories base-package="com.oreilly.security"/>	
+		<!--<jpa:repositories base-package="com.oreilly.security"/>-->
 </beans>
