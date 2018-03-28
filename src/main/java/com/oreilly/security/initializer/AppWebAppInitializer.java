@@ -7,8 +7,12 @@ import org.springframework.web.servlet.DispatcherServlet;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRegistration;
 
-public class AppWebAppInitializer implements WebApplicationInitializer{
-    @Override
+/**
+ * not needed for spring boot
+ */
+public class AppWebAppInitializer // implements WebApplicationInitializer
+{
+    //@Override
     public void onStartup(ServletContext servletContext) {
         AnnotationConfigWebApplicationContext context
                 = new AnnotationConfigWebApplicationContext();
