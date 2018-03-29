@@ -35,18 +35,32 @@ public class SecurityConfig
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        //BASIC AUTH
 //        http.authorizeRequests()
 //                .anyRequest()
 //                .hasRole("USER")
 //                .and()
 //                .httpBasic();
+//        http.authorizeRequests()
+//                .antMatchers("/appointments/*").hasRole("USER")
+//                .antMatchers("/schedule/*").hasRole("FOO")
+////                .antMatchers("/*").hasRole("ANONYMOUS")
+//                    .and().httpBasic()
+//                .and()
+//             .authorizeRequests()
+//                .antMatchers("/*").hasRole("ANONYMOUS")
+//        ;
+
+        //FORM LOGIN
         http.authorizeRequests()
                 .antMatchers("/appointments/*").hasRole("USER")
                 .antMatchers("/schedule/*").hasRole("FOO")
-//                .antMatchers("/*").hasRole("ANONYMOUS")
-                    .and().httpBasic()
                 .and()
-             .authorizeRequests()
+                .formLogin().loginPage("/login").loginProcessingUrl("/login")
+                .usernameParameter("custom_username").passwordParameter("custom_password")
+
+                .and()
+                .authorizeRequests()
                 .antMatchers("/*").hasRole("ANONYMOUS")
         ;
     }
