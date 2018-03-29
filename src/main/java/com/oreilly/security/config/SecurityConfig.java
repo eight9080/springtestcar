@@ -25,19 +25,30 @@ public class SecurityConfig
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("user1").password("user1Pass")
-                .authorities("ROLE_USER");
+                .withUser("user1").password("user1")
+                .authorities("ROLE_USER")
+                .and()
+                .withUser("admin").password("admin")
+                .authorities("ROLE_USER", "ROLE_FOO")
+        ;
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+//        http.authorizeRequests()
+//                .anyRequest()
+//                .hasRole("USER")
+//                .and()
+//                .httpBasic();
         http.authorizeRequests()
-                .anyRequest()
-                //.antMatchers("/**")
-                //.hasRole("USER")
-                .authenticated()
+                .antMatchers("/appointments/*").hasRole("USER")
+                .antMatchers("/schedule/*").hasRole("FOO")
+//                .antMatchers("/*").hasRole("ANONYMOUS")
+                    .and().httpBasic()
                 .and()
-                .httpBasic();
+             .authorizeRequests()
+                .antMatchers("/*").hasRole("ANONYMOUS")
+        ;
     }
 }
 
