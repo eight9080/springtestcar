@@ -58,11 +58,19 @@ public class SecurityConfig
                 .and()
                 .formLogin().loginPage("/login").loginProcessingUrl("/login")
                 .usernameParameter("custom_username").passwordParameter("custom_password")
+                .defaultSuccessUrl("/appointments/")
+                .defaultSuccessUrl("/appointments/", true)
+                .failureUrl("/login?error=true")
+
 
                 .and()
                 .authorizeRequests()
                 .antMatchers("/*").hasRole("ANONYMOUS")
         ;
+        http.logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login?logout=true");
+
     }
 }
 
