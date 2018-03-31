@@ -41,13 +41,15 @@ public class AppointmentController {
 	@ResponseBody
 	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public List<Appointment> saveAppointment(@ModelAttribute Appointment appointment){
-		final String username = SecurityContextHolder.getContext().getAuthentication().getName();
-		final AutoUser user = autoUserRepository.findByUsername(username);
+//		final String username = SecurityContextHolder.getContext().getAuthentication().getName();
+//		final AutoUser user = autoUserRepository.findByUsername(username);
 
 //		AutoUser user = new AutoUser();
 //		user.setEmail("test@email.com");
 //		user.setFirstName("Joe");
 //		user.setLastName("Doe");
+
+		AutoUser user = (AutoUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 		appointment.setUser(user);
 		appointment.setStatus("Initial");
