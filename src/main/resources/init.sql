@@ -20,6 +20,7 @@
         LAST_NAME varchar(255),
         PASSWORD varchar(255),
         USERNAME varchar(255),
+        ROLE varchar(255),
         primary key (autoUserId)
     );
 
@@ -28,21 +29,21 @@
         NAME varchar(255)
     );
 
-    alter table APPOINTMENT 
-        add constraint FK_hjr0wl1nbp09iulymmarqjj08 
-        foreign key (USER_ID) 
+    alter table APPOINTMENT
+        add constraint FK_hjr0wl1nbp09iulymmarqjj08
+        foreign key (USER_ID)
         references AUTO_USER;
 
-    alter table SERVICES 
-        add constraint FK_e1e9lupq7o7mwsgtbkwd6uivn 
-        foreign key (APPOINTMENT_ID) 
+    alter table SERVICES
+        add constraint FK_e1e9lupq7o7mwsgtbkwd6uivn
+        foreign key (APPOINTMENT_ID)
         references APPOINTMENT;
 
 
-insert into AUTO_USER (autoUserId, EMAIL, FIRST_NAME, LAST_NAME, PASSWORD, USERNAME) values (null, 'kevin.m.bowersox@gmail.com', 'Kevin', 'Bowersox', 'password', 'kbowersox');
-insert into AUTO_USER (autoUserId, EMAIL, FIRST_NAME, LAST_NAME, PASSWORD, USERNAME) values (null, 'johndoe@gmail.com', 'John', 'Doe', 'password', 'kbowersox');
-insert into AUTO_USER (autoUserId, EMAIL, FIRST_NAME, LAST_NAME, PASSWORD, USERNAME) values (null, 'janedoe@gmail.com', 'Jane', 'Doe', 'password', 'kbowersox');
-insert into AUTO_USER (autoUserId, EMAIL, FIRST_NAME, LAST_NAME, PASSWORD, USERNAME) values (null, 'juniordoe@gmail.com', 'Junior', 'Doe', 'password', 'kbowersox');
+insert into AUTO_USER (autoUserId, EMAIL, FIRST_NAME, LAST_NAME, PASSWORD, USERNAME, ROLE) values (null, 'kevin.m.bowersox@gmail.com', 'Kevin', 'Bowersox', 'password', 'kbowersox', 'ROLE_ADMIN');
+insert into AUTO_USER (autoUserId, EMAIL, FIRST_NAME, LAST_NAME, PASSWORD, USERNAME, ROLE) values (null, 'johndoe@gmail.com', 'John', 'Doe', 'password', 'jodoe', 'ROLE_USER');
+insert into AUTO_USER (autoUserId, EMAIL, FIRST_NAME, LAST_NAME, PASSWORD, USERNAME, ROLE) values (null, 'janedoe@gmail.com', 'Jane', 'Doe', 'password', 'jadoe', 'ROLE_USER');
+insert into AUTO_USER (autoUserId, EMAIL, FIRST_NAME, LAST_NAME, PASSWORD, USERNAME, ROLE) values (null, 'juniordoe@gmail.com', 'Junior', 'Doe', 'password', 'jrdoe', 'ROLE_USER');
 
 insert into APPOINTMENT (APPOINTMENT_ID, APPOINTMENT_DT, MAKE, MODEL, YEAR, USER_ID, STATUS) values (1,'2015-08-12 00:00:00', 'Subaru', 'Impreza', '2015', 1, 'Initial');
 insert into APPOINTMENT (APPOINTMENT_ID, APPOINTMENT_DT, MAKE, MODEL, YEAR, USER_ID, STATUS) values (2,'2015-08-12 00:00:00', 'Subaru', 'Legacy', '2015', 2, 'Initial');

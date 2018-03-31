@@ -37,6 +37,9 @@ public class AutoUser {
 	@Column(name="EMAIL")
 	private String email;
 
+	@Column(name = "ROLE")
+	private String role;
+
 	@JsonIgnore
 	@OneToMany(mappedBy="user", cascade=CascadeType.PERSIST)
 	private List<Appointment> appointments = new ArrayList<Appointment>();
@@ -88,5 +91,14 @@ public class AutoUser {
 	public void setAppointments(List<Appointment> appointments) {
 		this.appointments = appointments;
 	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 
 }
