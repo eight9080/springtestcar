@@ -76,7 +76,8 @@ public class SecurityConfig
 
                 .and()
                 .authorizeRequests()
-                .antMatchers("/*").hasRole("ANONYMOUS")
+                .antMatchers("/*").permitAll()
+        //.hasRole("ANONYMOUS")
         ;
         http.logout()
                 .logoutUrl("/logout")
