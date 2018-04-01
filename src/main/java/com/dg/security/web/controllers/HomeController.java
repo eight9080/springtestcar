@@ -33,6 +33,11 @@ public class HomeController {
 		return "login";
 	}
 
+	@RequestMapping(value="/login/failure", method=RequestMethod.GET)
+	public String goFailure(){
+		return "login";
+	}
+
 	@RequestMapping("/schedule")
 	public String goSchedule(){
 		return "schedule";
