@@ -1,4 +1,4 @@
-package com.oreilly.security.domain.entities.util;
+package com.dg.security.domain.entities.util;
 
 import java.sql.Date;
 import java.time.LocalDate;

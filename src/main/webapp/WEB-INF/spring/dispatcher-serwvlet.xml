@@ -9,7 +9,7 @@
 		
 		<!--<mvc:annotation-driven/>-->
 		<!--<mvc:resources location="/resources/" mapping="/resources/**"/>-->
-		<!--<context:component-scan base-package="com.oreilly.security"/>-->
+		<!--<context:component-scan base-package="com.dg.security"/>-->
 		
 		<!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 			<property name="prefix" value="/WEB-INF/views/"/>

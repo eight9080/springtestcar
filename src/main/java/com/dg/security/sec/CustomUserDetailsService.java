@@ -1,7 +1,7 @@
-package com.oreilly.security.sec;
+package com.dg.security.sec;
 
-import com.oreilly.security.domain.entities.AutoUser;
-import com.oreilly.security.domain.repositories.AutoUserRepository;
+import com.dg.security.domain.entities.AutoUser;
+import com.dg.security.domain.repositories.AutoUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

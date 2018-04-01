@@ -1,4 +1,4 @@
-package com.oreilly.security.domain.entities;
+package com.dg.security.domain.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

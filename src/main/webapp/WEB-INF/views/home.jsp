@@ -29,7 +29,7 @@
 	<jsp:include page="header.jsp"/>
 	<div class="container">
 		<div class="row">
-			<h1>Welcome to Kevin's Auto Service Center!</h1>
+			<h1>Welcome to Auto Service Center!</h1>
 			<h3>Allow our team of completely unqualified mechanics to
 				attempt to fix your automobile.</h3>
 			<p>Using the latest tools of the mechanic trade such as online

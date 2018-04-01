@@ -1,8 +1,8 @@
-package com.oreilly.security.web.controllers;
+package com.dg.security.web.controllers;
 
 import java.util.List;
 
-import com.oreilly.security.domain.repositories.AutoUserRepository;
+import com.dg.security.domain.repositories.AutoUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.oreilly.security.domain.entities.Appointment;
-import com.oreilly.security.domain.entities.AutoUser;
-import com.oreilly.security.domain.repositories.AppointmentRepository;
+import com.dg.security.domain.entities.Appointment;
+import com.dg.security.domain.entities.AutoUser;
+import com.dg.security.domain.repositories.AppointmentRepository;
 
 
 @Controller()

@@ -1,4 +1,4 @@
-package com.oreilly.security.config;
+package com.dg.security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -17,7 +17,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@EnableJpaRepositories(basePackages = "com.oreilly.security")
+@EnableJpaRepositories(basePackages = "com.dg.security")
 @EnableTransactionManagement
 public class JpaConfig {
 
@@ -33,7 +33,7 @@ public class JpaConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(){
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(datasource());
-        em.setPackagesToScan("com.oreilly.security.domain.entities");
+        em.setPackagesToScan("com.dg.security.domain.entities");
 
 //        em.setPersistenceUnitName("autoservice");
 

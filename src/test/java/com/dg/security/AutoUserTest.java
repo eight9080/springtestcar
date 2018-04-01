@@ -1,4 +1,4 @@
-package com.oreilly.security;
+package com.dg.security;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.oreilly.security.domain.entities.Appointment;
-import com.oreilly.security.domain.entities.AutoUser;
-import com.oreilly.security.domain.entities.Automobile;
-import com.oreilly.security.domain.repositories.AutoUserRepository;
+import com.dg.security.domain.entities.Appointment;
+import com.dg.security.domain.entities.AutoUser;
+import com.dg.security.domain.entities.Automobile;
+import com.dg.security.domain.repositories.AutoUserRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations="classpath:application-context.xml")

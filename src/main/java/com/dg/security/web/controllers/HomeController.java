@@ -1,7 +1,7 @@
-package com.oreilly.security.web.controllers;
+package com.dg.security.web.controllers;
 
-import com.oreilly.security.domain.entities.AutoUser;
-import com.oreilly.security.domain.repositories.AutoUserRepository;
+import com.dg.security.domain.entities.AutoUser;
+import com.dg.security.domain.repositories.AutoUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

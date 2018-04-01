@@ -1,10 +1,9 @@
-package com.oreilly.security.domain.entities;
+package com.dg.security.domain.entities;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.Convert;
@@ -21,7 +20,7 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.oreilly.security.domain.entities.util.LocalDateConverter;
+import com.dg.security.domain.entities.util.LocalDateConverter;
 
 @Entity
 @Table(name = "APPOINTMENT")

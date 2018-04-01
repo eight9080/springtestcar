@@ -24,7 +24,7 @@
              and fully-qualified @Configuration classes -->
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>com.oreilly.security.config</param-value>
+			<param-value>com.dg.security.config</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
@@ -41,7 +41,7 @@
 	</context-param>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>com.oreilly.security.config</param-value>
+		<param-value>com.dg.security.config</param-value>
 	</context-param>
 	<listener>
 		<listener-class>

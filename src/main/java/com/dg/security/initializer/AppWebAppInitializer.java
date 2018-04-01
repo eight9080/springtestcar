@@ -1,4 +1,4 @@
-package com.oreilly.security.initializer;
+package com.dg.security.initializer;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -17,7 +17,7 @@ public class AppWebAppInitializer // implements WebApplicationInitializer
         AnnotationConfigWebApplicationContext context
                 = new AnnotationConfigWebApplicationContext();
 
-        context.setConfigLocation("com.oreilly.security.config");
+        context.setConfigLocation("com.dg.security.config");
 
         servletContext.addListener(new ContextLoaderListener(context));
 
