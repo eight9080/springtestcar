@@ -4,16 +4,22 @@ import com.dg.security.sec.CustomAuthenticationFilter;
 import com.dg.security.sec.CustomAuthenticationProvider;
 import com.dg.security.sec.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
@@ -25,6 +31,16 @@ public class SecurityConfig
 
     @Autowired
     private CustomAuthenticationProvider customAuthenticationProvider;
+
+    @Autowired
+    private DataSource dataSource;
+
+    @Bean
+    public FilterRegistrationBean authenticatioRegistrationBean(CustomAuthenticationFilter filter){
+        final FilterRegistrationBean registrationBean = new FilterRegistrationBean(filter);
+        registrationBean.setEnabled(false);
+        return registrationBean;
+    }
 
    @Bean
    public CustomAuthenticationFilter authenticationFilter() throws Exception{
@@ -61,6 +77,11 @@ public class SecurityConfig
         return new LoginUrlAuthenticationEntryPoint("/login");
     }
 
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
+
 //    @Override
 //    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 //        auth.inMemoryAuthentication()
@@ -84,13 +105,20 @@ public class SecurityConfig
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 //        auth.userDetailsService(customUserDetailsService);
-        auth.
+//        auth.authenticationProvider(customAuthenticationProvider);
+        //JDBC datasource
+        auth.jdbcAuthentication()
+            .dataSource(dataSource)
+                .passwordEncoder(passwordEncoder())
+            .groupAuthoritiesByUsername("select\n" +
+                    "g.id, g.group_name, ga.authority\n" +
+                    "from\n" +
+                    "groups g, group_members gm, group_authorities ga\n" +
+                    "where\n" +
+                    "gm.username = ? and g.id = ga.group_id and g.id = gm.group_id")
+        ;
 
-                authenticationProvider(customAuthenticationProvider)
-
-                ;
     }
-
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -111,37 +139,35 @@ public class SecurityConfig
 //        ;
 
         //FORM LOGIN
-//        http.authorizeRequests()
-//                .antMatchers("/appointments/*").hasRole("USER")
-//                .antMatchers("/schedule/*").hasRole("FOO")
-//                .and()
-//                .formLogin().loginPage("/login").loginProcessingUrl("/login")
-//                .usernameParameter("custom_username").passwordParameter("custom_password")
-//                .defaultSuccessUrl("/appointments/")
-//                .defaultSuccessUrl("/appointments/", true)
-//                .failureUrl("/login?error=true")
-//                .and()
-//                .authorizeRequests()
-//                .antMatchers("/*").permitAll()
-//        //.hasRole("ANONYMOUS")
-////        ;
-
         http.authorizeRequests()
                 .antMatchers("/appointments/*").hasRole("USER")
                 .antMatchers("/schedule/*").hasRole("FOO")
                 .and()
-                .addFilterBefore(authenticationFilter(), UsernamePasswordAuthenticationFilter.class)
-
+                .formLogin().loginPage("/login").loginProcessingUrl("/login")
+                .usernameParameter("custom_username").passwordParameter("custom_password")
+                .defaultSuccessUrl("/appointments/")
+                .defaultSuccessUrl("/appointments/", true)
+                .failureUrl("/login?error=true")
+                .and()
                 .authorizeRequests()
                 .antMatchers("/*").permitAll()
-
-        //.hasRole("ANONYMOUS")
         ;
+
+        //CUSTOM AUTH
+//        http.authorizeRequests()
+//                .antMatchers("/appointments/*").hasRole("USER")
+//                .antMatchers("/schedule/*").hasRole("FOO")
+//                .and()
+//                .addFilterBefore(authenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+//
+//                .authorizeRequests()
+//                .antMatchers("/*").permitAll()
+//        ;
+//        http.exceptionHandling().authenticationEntryPoint(loginEntryPoint());
+
         http.logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login?logout=true");
-
-        http.exceptionHandling().authenticationEntryPoint(loginEntryPoint());
 
     }
 }

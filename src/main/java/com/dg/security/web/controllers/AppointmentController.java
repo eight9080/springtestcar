@@ -44,12 +44,12 @@ public class AppointmentController {
 //		final String username = SecurityContextHolder.getContext().getAuthentication().getName();
 //		final AutoUser user = autoUserRepository.findByUsername(username);
 
-//		AutoUser user = new AutoUser();
-//		user.setEmail("test@email.com");
-//		user.setFirstName("Joe");
-//		user.setLastName("Doe");
+		AutoUser user = new AutoUser();
+		user.setEmail("test@email.com");
+		user.setFirstName("Joe");
+		user.setLastName("Doe");
 
-		AutoUser user = (AutoUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//		AutoUser user = (AutoUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 		appointment.setUser(user);
 		appointment.setStatus("Initial");
