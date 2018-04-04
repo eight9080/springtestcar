@@ -141,7 +141,7 @@ public class SecurityConfig
         //FORM LOGIN
         http.authorizeRequests()
                 .antMatchers("/appointments/*").hasRole("USER")
-                .antMatchers("/schedule/*").hasRole("FOO")
+                .antMatchers("/schedule/*").hasAnyRole("FOO")
                 .and()
                 .formLogin().loginPage("/login").loginProcessingUrl("/login")
                 .usernameParameter("custom_username").passwordParameter("custom_password")
